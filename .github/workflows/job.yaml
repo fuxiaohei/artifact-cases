@@ -17,6 +17,13 @@ jobs:
           name: single-directory
           path: |
             report/
+      - name: upload-directories
+        uses: actions/upload-artifact@v3
+        with:
+          name: several-directories
+          path: |
+            report/
+            docs/
       - name: upload-multiple-files
         uses: actions/upload-artifact@v3
         with:
