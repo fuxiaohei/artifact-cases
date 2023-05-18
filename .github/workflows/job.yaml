@@ -9,18 +9,18 @@ jobs:
       - name: upload-single-file
         uses: actions/upload-artifact@v3
         with:
-          name: sample.json
+          name: single-json-file
           path: ss.json
       - name: upload-directory
         uses: actions/upload-artifact@v3
         with:
-          name: report
+          name: single-directory
           path: |
             report/
       - name: upload-multiple-files
         uses: actions/upload-artifact@v3
         with:
-          name: multiple-files
+          name: file-and-directory
           path: |
             binary.zip
             report/
