@@ -6,29 +6,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: upload-single-file
+      - name: upload-two-files
         uses: actions/upload-artifact@v3
         with:
-          name: single-json-file
-          path: ss.json
-      - name: upload-directory
-        uses: actions/upload-artifact@v3
-        with:
-          name: single-directory
+          name: two-files
           path: |
-            report/
-      - name: upload-directories
-        uses: actions/upload-artifact@v3
+            ss.json
+            report/cities.csv
+      - name: download-two-files
+        uses: actions/download-artifact@v3
         with:
-          name: several-directories
-          path: |
-            report/
-            docs/
-      - name: upload-multiple-files
-        uses: actions/upload-artifact@v3
-        with:
-          name: file-and-directory
-          path: |
-            binary.zip
-            report/
-          retention-days: 5
+          name: two-files
+          path: ./two-files
+      - name: Display structure of downloaded files
+        run: ls -lhR
+        working-directory: ./two-files

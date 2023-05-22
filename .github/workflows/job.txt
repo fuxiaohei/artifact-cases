@@ -1,0 +1,34 @@
+name: artifact-cases
+run-name: artifact-cases
+on: [push]
+jobs:
+  test-artifact-cases:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: upload-single-file
+        uses: actions/upload-artifact@v3
+        with:
+          name: single-json-file
+          path: ss.json
+      - name: upload-directory
+        uses: actions/upload-artifact@v3
+        with:
+          name: single-directory
+          path: |
+            report/
+      - name: upload-directories
+        uses: actions/upload-artifact@v3
+        with:
+          name: several-directories
+          path: |
+            report/
+            docs/
+      - name: upload-multiple-files
+        uses: actions/upload-artifact@v3
+        with:
+          name: file-and-directory
+          path: |
+            binary.zip
+            report/
+          retention-days: 5
