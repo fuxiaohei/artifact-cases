@@ -9,10 +9,11 @@ jobs:
       - name: upload-two-files
         uses: actions/upload-artifact@v3
         with:
-          name: two-files
+          name: more-files
           path: |
             ss.json
             report/cities.csv
+            docs/docs.md
      # - name: download-two-files
      #   uses: actions/download-artifact@v3
      #   with:
