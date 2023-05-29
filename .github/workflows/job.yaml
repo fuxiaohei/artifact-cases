@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: upload-two-files
+      - name: upload-more-files
         uses: actions/upload-artifact@v3
         with:
           name: more-files
@@ -14,11 +14,11 @@ jobs:
             ss.json
             report/cities.csv
             docs/docs.md
-      - name: download-two-files
+      - name: download-more-files
         uses: actions/download-artifact@v3
         with:
           name: more-files
           path: ./more-files
       - name: Display structure of downloaded files
         run: ls -lR
-        working-directory: ./more-files
+        working-directory: ./
