@@ -18,7 +18,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: more-files
-          path: ./more-files
+          path: ./more-more-more-more
       - name: Display structure of downloaded files
         run: ls -lR
         working-directory: ./
