@@ -14,11 +14,11 @@ jobs:
             ss.json
             report/cities.csv
             docs/docs.md
-     # - name: download-two-files
-     #   uses: actions/download-artifact@v3
-     #   with:
-     #     name: two-files
-     #     path: ./two-files
-     # - name: Display structure of downloaded files
-     #   run: ls -lhR
-     #   working-directory: ./two-files
+      - name: download-two-files
+        uses: actions/download-artifact@v3
+        with:
+          name: more-files
+          path: ./more-files
+      - name: Display structure of downloaded files
+        run: ls -lR
+        working-directory: ./more-files
