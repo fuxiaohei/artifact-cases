@@ -17,6 +17,13 @@ jobs:
             ss.json
             report/cities.csv
             docs/docs.md
+      - name: upload-more-files
+        uses: actions/upload-artifact@v3
+        with:
+          name: more-files
+          path: |
+            report/cities.csv
+            binary.zip
       - name: download-more-files
         uses: actions/download-artifact@v3
         with:
