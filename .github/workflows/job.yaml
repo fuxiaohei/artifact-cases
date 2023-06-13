@@ -10,7 +10,7 @@ jobs:
         run: ls -lR
         working-directory: ./
       - name: upload-more-files
-        uses: actions/upload-artifact@v3
+        uses: https://github.com/actions/upload-artifact@v3
         with:
           name: more-files
           path: |
@@ -18,25 +18,25 @@ jobs:
             report/cities.csv
             docs/docs.md
       - name: upload-more-files
-        uses: actions/upload-artifact@v3
+        uses: https://github.com/actions/upload-artifact@v3
         with:
           name: more-files
           path: |
             report/cities.csv
             binary.zip
       - name: upload-another-file
-        uses: actions/upload-artifact@v3
+        uses: https://github.com/actions/upload-artifact@v3
         with:
           name: another-file
           path: |
             conf/example.ini
       - name: download-more-files
-        uses: actions/download-artifact@v3
+        uses: https://github.com/actions/download-artifact@v3
         with:
           name: more-files
           path: ./more-more-more-more
       - name: download-another-file
-        uses: actions/download-artifact@v3
+        uses: https://github.com/actions/download-artifact@v3
         with:
           name: another-file
           path: ./another-file
