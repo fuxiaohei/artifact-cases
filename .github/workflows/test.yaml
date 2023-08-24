@@ -1,0 +1,117 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Make some test files
+        run: |
+          mkdir test
+          echo "testing" > test/test_file1.md
+          echo "testing" > test/test_file2.md
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: test
+          path: test/*
+
+      - name: Make some more test files
+        run: |
+          mkdir docs
+          echo "testing" > docs/docs_file1.md
+          echo "testing" > docs/docs_file2.md
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: docs
+          path: docs/*
+
+      - name: Make ugly naming test files
+        run: |
+          mkdir xyz
+          echo "testing-xzy" > xyz/xyz_file1.md
+          echo "testing-xzy" > xyz/xyz_file2.md
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ttt
+          path: xyz/*
+
+      - name: Make single test
+        run: |
+          mkdir single
+          echo "testing" > single/single_file1.md
+          echo "testing" > single/single_file2.md
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: single
+          path: single/single_file1.md
+
+      - name: Make subdirectory test files
+        run: |
+          mkdir subdir
+          mkdir subdir/subdir2
+          echo "testing" > subdir/subdir_file1.md
+          echo "testing" > subdir/subdir2/subdir_file2.md
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: subdir
+          path: subdir/*
+
+      - name: Make same naming test files
+        run: |
+          echo "testingtestingtesting" >> test/test_file2.md
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: test2
+          path: test/*
+
+  test_all:
+    runs-on: ubuntu-latest
+
+    needs:
+      - build
+
+    steps:
+      - uses: actions/download-artifact@v3
+      - run: ls -alR
+
+  test:
+    runs-on: ubuntu-latest
+
+    needs:
+      - build
+
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: test
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: docs
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: ttt
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: single
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: subdir
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: test2
+
+      - run: ls -alR
