@@ -1,13 +1,20 @@
-on:
-  schedule:
-    - cron: "*/5 * * * *"
+on: 
+  push:
+    branches:
+      - master
 
 jobs:
-  build:
+  job1:
     runs-on: ubuntu-latest
-
+    name: Skipped job
+    if: false
     steps:
-      - name: Make some test files
-        run: |
-          echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-          echo "🎉 The job was automatically triggered by a ${{ gitea.event_name }} event."
+      - run: echo "I am skipped"
+
+  job2:
+    runs-on: ubuntu-latest
+    name: Mustn't be skipped
+    needs: job1
+    if: always()
+    steps:
+      - run: echo "I should have been displayed :'("
