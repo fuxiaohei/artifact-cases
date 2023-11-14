@@ -9,11 +9,5 @@ jobs:
     steps:
       - name: Make some test files
         run: |
-          mkdir test
-          echo "testing" > test/test_file1.md
-          echo "testing" > test/test_file2.md
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: test-files
-          path: test/*
+          echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+          echo "🎉 The job was automatically triggered by a ${{ gitea.event_name }} event."
