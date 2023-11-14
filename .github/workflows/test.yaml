@@ -15,6 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Mustn't be skipped
     needs: job1
-    if: always()
+    if: ${{ always() }}
     steps:
       - run: echo "I should have been displayed :'("
