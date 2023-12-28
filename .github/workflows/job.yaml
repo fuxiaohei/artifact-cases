@@ -27,4 +27,5 @@ jobs:
           uses: actions/download-artifact@v3
           with:
             name: actual
-        - run: cat actual
+        - run: 
+            ls -lh && cat actual && cat actual2
