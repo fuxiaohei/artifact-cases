@@ -11,6 +11,7 @@ jobs:
           name: actual
           path: actual
   second:
+    needs: [first]
     runs-on: ubuntu-latest
     steps:
       - run: echo "second" > actual2
