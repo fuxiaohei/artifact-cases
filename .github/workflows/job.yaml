@@ -13,11 +13,11 @@ jobs:
   second:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "second" > actual
+      - run: echo "second" > actual2
       - uses: actions/upload-artifact@v3
         with:
           name: actual
-          path: actual
+          path: actual2
   verify:
       needs: [second]
       name: Verify contents
