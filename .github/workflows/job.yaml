@@ -2,33 +2,29 @@ name: artifact-cases
 run-name: artifact-cases
 on: [push]
 jobs:
-  test-artifact-cases:
+  first:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: upload-single-file
-        uses: actions/upload-artifact@v3
+      - run: echo "first" > actual
+      - uses: actions/upload-artifact@v3
         with:
-          name: single-json-file
-          path: ss.json
-      - name: upload-directory
-        uses: actions/upload-artifact@v3
+          name: actual
+          path: actual
+  second:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "second" > actual
+      - uses: actions/upload-artifact@v3
         with:
-          name: single-directory
-          path: |
-            report/
-      - name: upload-directories
-        uses: actions/upload-artifact@v3
-        with:
-          name: several-directories
-          path: |
-            report/
-            docs/
-      - name: upload-multiple-files
-        uses: actions/upload-artifact@v3
-        with:
-          name: file-and-directory
-          path: |
-            binary.zip
-            report/
-          retention-days: 5
+          name: actual
+          path: actual
+  verify:
+      needs: [second]
+      name: Verify contents
+      runs-on: ubuntu-latest
+      steps:
+        - name: Fetch Integration Tests from Build
+          uses: actions/download-artifact@v3
+          with:
+            name: actual
+        - run: cat actual
